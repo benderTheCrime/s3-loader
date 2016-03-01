@@ -1,0 +1,23 @@
+{
+  "name": "s3-loader",
+  "version": "1.0.0",
+  "description": "Load Webpack bundle dependencies from s3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benderTheCrime/s3-loader.git"
+  },
+  "author": "Joe Groseclose <@benderTheCrime>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benderTheCrime/s3-loader/issues"
+  },
+  "homepage": "https://github.com/benderTheCrime/s3-loader#readme",
+  "dependencies": {
+    "aws-sdk": "2.2.39",
+    "loader-utils": "0.2.12"
+  }
+}
