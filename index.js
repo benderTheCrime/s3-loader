@@ -29,7 +29,7 @@ module.exports = function(source) {
         return;
     }
 
-    if (depth && !isNaN(depth) && depth > 0 && filenameArr.length > 3) {
+    if (depth && !isNaN(depth) && filenameArr.length > depth) {
         key = filenameArr.slice(
             filenameArr.length - depth, filenameArr.length
         ).join('/');

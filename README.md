@@ -25,7 +25,8 @@ to load content from s3, for additional path options, see
 
 *NOTE: It is important to understand that this file still must exist on your
 filesystem in order to bundle it. If you do not want to check this file into
-your repository, touch it, and add it to `.gitignore`.*
+your repository, touch it, and add it to `.gitignore`. You can use resolvers to
+conditionally create these files for you.*
 
 #### Webpack Configuration
 We now configure our Webpack! In `webpack.config.js` (or wherever you add your
@@ -86,7 +87,8 @@ Or as a loader query string:
 
 ##### Additional Options
 
-| key    | description                                                               |
-|--------|---------------------------------------------------------------------------|
-| depth  | The number of additional "folders" to add to the s3 key from the filename |
-| prefix | A string path to prefix on to the s3 key from the filename                |
+| key       | description                                                                  |
+|-----------|------------------------------------------------------------------------------|
+| depth     | The number of additional "folders" to add to the s3 key from the filename    |
+| prefix    | A string path to prefix on to the s3 key from the filename                   |
+| overwrite | Whether or not to replace the file on the local filesystem with the s3 asset |
