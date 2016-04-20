@@ -87,8 +87,9 @@ Or as a loader query string:
 
 ##### Additional Options
 
-| key       | description                                                                  |
-|-----------|------------------------------------------------------------------------------|
-| depth     | The number of additional "folders" to add to the s3 key from the filename    |
-| prefix    | A string path to prefix on to the s3 key from the filename                   |
-| overwrite | Whether or not to replace the file on the local filesystem with the s3 asset |
+| key        | description                                                                              |
+|------------|------------------------------------------------------------------------------------------|
+| relativity | When passed, prevents relativity from being removed from the s3 key (eg.: "../" or "~/") |
+| depth      | The number of additional "folders" to add to the s3 key from the filename                |
+| prefix     | A string path to prefix on to the s3 key from the filename                               |
+| overwrite  | Whether or not to replace the file on the local filesystem with the s3 asset             |

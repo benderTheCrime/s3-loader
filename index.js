@@ -12,6 +12,7 @@ module.exports = function(source) {
         filenameArr = filename.split('/'),
         query = loaderUtils.parseQuery(this.query),
         s3Options = extend(this.options.s3Options || {}, query),
+        relativity = !!s3Options.relativity,
         depth = s3Options.depth,
         prefix = s3Options.prefix,
         callback = this.async(),
@@ -27,6 +28,10 @@ module.exports = function(source) {
     } catch (e) {
         callback(e, null);
         return;
+    }
+
+    if (!relativity) {
+        key = key.replace(/^[^a-z0-9]+/, '');
     }
 
     if (depth && !isNaN(depth) && filenameArr.length > depth) {
