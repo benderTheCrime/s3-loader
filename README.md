@@ -20,8 +20,9 @@ import data from `index.json`;
 ```
 
 By default, this loader will use only the name of the file as the key by which
-to load content from s3, for additional path options, see
-[Additional Options](#additional-options).
+to load content from s3. All relativity will be stripped from the filename
+before the key is requested from the s3 bucket (eg.: "../" or "~/"). For
+additional path options, see [Additional Options](#additional-options).
 
 *NOTE: It is important to understand that this file still must exist on your
 filesystem in order to bundle it. If you do not want to check this file into
