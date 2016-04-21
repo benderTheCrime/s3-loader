@@ -12,9 +12,10 @@ module.exports = function(source) {
         filenameArr = filename.split('/'),
         query = loaderUtils.parseQuery(this.query),
         s3Options = extend(this.options.s3Options || {}, query),
-        relativity = !!s3Options.relativity,
-        depth = s3Options.depth,
+        root = path.resolve(process.cwd(), s3Options.root || ''),
+        depth = s3Options.depth || 0,
         prefix = s3Options.prefix,
+        overwrite = s3Options.overwrite || false,
         callback = this.async(),
         key,
         s3;
@@ -26,20 +27,25 @@ module.exports = function(source) {
             params: { Bucket: s3Options.bucketName }
         });
     } catch (e) {
-        callback(e, null);
-        return;
+        return callback(e, null);
     }
 
-    if (!relativity) {
-        key = key.replace(/^[^a-z0-9]+/, '');
-    }
+    if (!isNaN(depth) && filenameArr.length > depth) {
+        var index = depth > 0 ? filenameArr.length - depth : 0;
 
-    if (depth && !isNaN(depth) && filenameArr.length > depth) {
-        key = filenameArr.slice(
-            filenameArr.length - depth, filenameArr.length
-        ).join('/');
+        key = filenameArr
+            .slice(index, filenameArr.length)
+            .join('/');
     } else {
         key = filenameArr.pop();
+    }
+
+    if (root) {
+        if (root.charAt(root.length - 1) !== '/') {
+            root += '/';
+        }
+
+        key = key.replace(root, '');
     }
 
     if (prefix) {
@@ -49,10 +55,12 @@ module.exports = function(source) {
     s3.getObject({ Key: key }, function(e, data) {
         var body = data && data.Body;
 
-        if (!e && s3Options.overwrite) {
-            fs.writeFileSync(filename, body);
-            callback(null, body);
-            return;
+        if (!e) {
+            if (overwrite) {
+                fs.writeFileSync(filename, body);
+            }
+
+            return callback(null, body);
         }
 
         callback(e, null);
