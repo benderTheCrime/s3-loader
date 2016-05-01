@@ -2,8 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-#### [1.2.0] - 2016-04-21
-##### Removed
+#### [1.3.0] - 2016-04-30
+##### Added
+- Added "filename" option, which allows passage of a function to the Webpack
+config to allow for more flexible filename to s3 key transforms.
+
+### [1.2.0] - 2016-04-21
+#### Removed
 - Added "root" to additional options, which allows definition of a top-level
 directory to which the s3 key will be shortened (stripping off any higher-level
 directories from the key)
