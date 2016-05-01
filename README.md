@@ -59,7 +59,7 @@ your config:
 
 ```javascript
 {
-    s3Options: {
+    query: {
         accessKeyId: '',
         secretAccessKey: '',
         bucketName: ''
@@ -87,6 +87,16 @@ Or as a loader query string:
 ```
 
 ##### Additional Options
+
+These are options that can be added to the "s3Loader" property (similarly to plugins) so that additional filename to key transforms can be performed.
+
+| key        | description                                                                              | default         |
+|------------|------------------------------------------------------------------------------------------|-----------------|
+| filename   | A function to call internal to the loader to build a key from a passed filename          | undefined       |
+
+##### Additional Query Options
+
+These are options that can be added to the loader query.
 
 | key        | description                                                                              | default         |
 |------------|------------------------------------------------------------------------------------------|-----------------|
