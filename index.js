@@ -68,6 +68,6 @@ module.exports = function(source) {
             return callback(null, body);
         }
 
-        callback(e, null);
+        throw new Error('NoSuchKey: The specified key does not exist: ' + key);
     });
 };
