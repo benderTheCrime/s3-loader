@@ -1,6 +1,6 @@
 {
   "name": "s3-loader",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "description": "Load Webpack bundle dependencies from s3",
   "main": "index.js",
   "scripts": {
